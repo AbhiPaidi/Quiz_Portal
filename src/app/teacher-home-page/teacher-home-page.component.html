@@ -1,0 +1,334 @@
+<div class="back h-100" style="background-color: #f0f2f5;">
+  <div id = "Heading">
+    <nav class="navbar sticky-top flex-md-nowrap p-0" style="background-color: white; color: #333333;">
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" style="margin-left: 25px;" ><img src="../../assets/images.jpeg" style="width: 200px; height: 80px;"(click)="refresh()"   >
+      </a>
+
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <button type="button" class="btn btn-outline-warning" style="height: 40px; padding: 0px 10px;" (click)="signOut()" >Sign Out</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="cardimage" style="width: 14rem; border:0px; margin-left: 16px;">
+          <div class="card-body text-center">
+            <img src= "../../assets/login.jpg" class="card-img-top text-center mt-5" alt="User Profile Pic" style="width: 160px; border-radius:10% !important;">
+            <span class="card-title" style="margin-top: 20px; font-weight: bold; display: block" style="font-size: large;">{{firstname}}</span>
+          </div>
+        </div>
+        <div class="sidebar-sticky pt-3">
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" style="font-size: 22px !important;">Create Quiz</a>
+                <a class="nav-link mt-2" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"  style="font-size: 22px !important;">Quiz Results</a>
+              </div>
+        </div>
+        </nav>
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" >
+          <div class="tab-content" id="v-pills-tabContent">
+
+
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#createQuiz" style="height: 40px; padding: 0px 10px;" >Create Quiz</button>
+
+                <div class="btn-toolbar mb-2 mb-md-0">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#displayInstructions" style="height: 40px; padding: 0px 10px;" >Quiz Instructions</button>
+                </div>
+
+              </div>
+
+              <!-- Instructions Modal -->
+              <div class="modal fade" id="displayInstructions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Quiz Instructions</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p class="header">
+                       <span style="text-align: center; margin-left: 40%; font-weight: bold;">     INSTRUCTIONS:   </span>
+                       <br>
+                      </p>
+                      <hr>
+                      <p>   This quiz consists of multiple-choice questions. </p>
+                      <p>   Keep the following in mind: </p>
+                      <p>
+                        <span style="font-weight: bold;">     Single Attempts :   </span>
+                      </p>
+                      <p>   You will have only one attempt for this quiz which will recorded in the grade book. </p>
+                      <p>   <span style="font-weight: bold;">     Timing :   </span> </p>
+                      <p>   You will need to complete each of your attempts in one sitting, as you are allotted fixed time to complete each attempt. </p>
+                      <p>    <span style="font-weight: bold;">     Answers :   </span> </p>
+                      <p>   There is single correct option, on selecting the correct option you will be graded positive marks and on selecting the wrong option you will be graded negative mark </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!-- Modal on Create Quiz -->
+              <div class="modal fade" id="createQuiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Quiz Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="#!">
+
+                        <div class="form-group mb-4">
+                          <label for="name" class="sr-only">Quiz Name</label>
+                          <input type="text" name="name" id="email" class="form-control" placeholder="Quiz Name" (input)="quizName=$event.target.value">
+                        </div>
+
+
+                        <div class="form-group mb-4">
+                          <span class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01" style="width: 215px !important;">Quiz Duration :</label>
+                            <select class="custom-select" id="inputGroupSelect01" (input)="quizDuration=$event.target.value" >
+                              <option selected>Choose...</option>
+                              <option value="10">10 min</option>
+                              <option value="15">15 min</option>
+                              <option value="20">20 min</option>
+                            </select>
+                          </span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                          <span class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01" style="width: 215px !important;"> Section :   </label>
+                            <select class="custom-select" id="inputGroupSelect01" (input)="quizSection=$event.target.value">
+                              <option selected>Choose...</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                            </select>
+                          </span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                          <input class="form-control" type="file" (change)="onChange($event)">
+                          <button (click)="onUpload()" style="margin-top: 5px; margin-left: 40%; margin-inline-end: auto; " class="btn btn-success"> Upload </button>
+                      </div>
+
+                      <div class="spinning-preloader-container">
+                        <div class="preloader-wrapper big active">
+
+                              <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                  <div class="circle"> </div>
+                                </div> <div class="gap-patch">
+                                  <div class="circle"> </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+
+
+
+                      <!-- Shareable short link of  uoloaded file -->
+                      <div class="container text-center jumbotron"
+                          *ngIf="shortLink">
+                          <h2> Visit Here For Your Uploaded File</h2>
+                          <a href="{{shortLink}}">{{shortLink}}</a>
+                      </div>
+
+                      <!--Flag variable is used here-->
+                      <div class="container" *ngIf="loading">
+                        <div class="d-flex justify-content-center">
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      </form>
+                    </div>
+
+
+                    <span *ngIf="cquizmessage">
+                      {{cquizmessage.message}}
+                    </span>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary"  (click) = "createQuiz()">Create</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table -->
+
+              <table id ="users">
+
+                <tr>
+                    <th style="width: 30pc;">
+                      Quiz Name
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Section
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Quiz File
+                    </th>
+
+                    <th style="width: 15pc;">
+                      Actions
+                    </th>
+
+                </tr>
+
+                <tr *ngFor = "let item of allQuiz">
+                    <td style="width: 30pc;" >
+                        {{item.quizname}}
+                    </td>
+                    <td style="width: 25pc;" >
+                      {{item.quizSection}}
+                    </td>
+                    <td style="width: 25pc;" >
+                      <a href="{{item.quizFile}}"  target="_blank">{{item.quizFile}}</a>
+                    </td>
+                    <td style="width: 15pc;">
+                      <button type="button" class="btn btn-danger btn-sm  text-center offset-1"  (click) =" deleteQuiz(item.quizname)" style="width: 30px;height: 30px; padding: 2px !important;">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                      </svg></button>
+                    </td>
+                </tr>
+
+              </table>
+
+
+
+            </div>
+
+
+
+
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Results</h1>
+              </div>
+
+              <table id ="users">
+
+                <tr>
+                    <th style="width: 30pc;">
+                      Time Created
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Quiz Name
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Quiz File
+                    </th>
+
+                    <th style="width: 15pc;">
+                      View Results
+                    </th>
+
+                </tr>
+
+                <tr *ngFor = "let item of allQuiz">
+                  <td style="width: 30pc;" >
+                    {{item.createdTime["$date"] | date:"medium"}}
+                  </td>
+                  <td style="width: 25pc;" >
+                    {{item.quizname}}
+                  </td>
+                  <td style="width: 25pc;" >
+                    <a href="{{item.quizFile}}"  target="_blank">{{item.quizFile}}</a>
+                  </td>
+                  <td style="width: 15pc;">
+                    <button type="button" class="btn btn-outline-info btn-sm  text-center offset-1" data-toggle="modal" data-target="#api_delete"  data-toggle="modal" data-target="#myModal" style="width: 30px;height: 30px; padding: 2px !important;" (click)= "getresults(item.quizname, item.createdBy)">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                        <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                      </svg>
+                    </button>
+                  </td>
+              </tr>
+              </table>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel"> Quiz --- {{resultsQuizname}}</h4>
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                      <table id ="users">
+
+                        <tr>
+                            <th style="width: 30pc;">
+                              Student Name
+                            </th>
+
+                            <th style="width: 25pc;">
+                              Marks
+                            </th>
+
+                        </tr>
+
+                        <tr *ngFor = "let item of resultskeys">
+                            <td style="width: 30pc;" >
+                                {{item}}
+                            </td>
+                            <td style="width: 25pc;" >
+                              {{allresults[item]}}
+                            </td>
+                        </tr>
+
+                      </table>
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+
+
+
+
+          </div>
+        </main>
+
+
+
+
+
+
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,179 @@
+<div class="back h-100" style="background-color: #f0f2f5;">
+  <div id = "Heading">
+    <nav class="navbar sticky-top flex-md-nowrap p-0" style="background-color: white; color: #333333;">
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" style="margin-left: 25px;"><img src="../../assets/images.jpeg" style="width: 200px; height: 80px;"(click)="refresh()"   >
+      </a>
+
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <button type="button" class="btn btn-outline-warning" style="height: 40px; padding: 0px 10px;" (click)="signOut()" >Sign Out</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="cardimage" style="width: 14rem; border:0px; margin-left: 16px;">
+          <div class="card-body text-center">
+            <img src= "../../assets/login.jpg" class="card-img-top text-center mt-5" alt="User Profile Pic" style="width: 160px; border-radius:10% !important;">
+            <span class="card-title" style="margin-top: 20px; font-weight: bold; display: block" style="font-size: 20px;">{{firstname}}</span>
+          </div>
+        </div>
+        <div class="sidebar-sticky pt-3">
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" style="font-size: 22px !important;">Quiz</a>
+                <a class="nav-link mt-2" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"  style="font-size: 22px !important;">Academics</a>
+              </div>
+        </div>
+        </nav>
+
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" >
+          <div class="tab-content" id="v-pills-tabContent">
+
+
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Pending Quizessss!</h1>
+
+                <div class="btn-toolbar mb-2 mb-md-0">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#displayInstructions" style="height: 40px; padding: 0px 10px;" >Quiz Instructions</button>
+                </div>
+
+              </div>
+
+              <!-- Instructions Modal -->
+              <div class="modal fade" id="displayInstructions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Quiz Instructions</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p class="header">
+                       <span style="text-align: center; margin-left: 40%; font-weight: bold;">     INSTRUCTIONS:   </span>
+                       <br>
+                      </p>
+                      <hr>
+                      <p>   This quiz consists of multiple-choice questions. </p>
+                      <p>   Keep the following in mind: </p>
+                      <p>
+                        <span style="font-weight: bold;">     Single Attempts :   </span>
+                      </p>
+                      <p>   You will have only one attempt for this quiz which will recorded in the grade book. </p>
+                      <p>   <span style="font-weight: bold;">     Timing :   </span> </p>
+                      <p>   You will need to complete each of your attempts in one sitting, as you are allotted fixed time to complete each attempt. </p>
+                      <p>    <span style="font-weight: bold;">     Answers :   </span> </p>
+                      <p>   There is single correct option, on selecting the correct option you will be graded positive marks and on selecting the wrong option you will be graded negative mark </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div id="template">
+                <section class="hero-section">
+                  <div class="card-grid">
+
+                    <a class="card" *ngFor = "let item of allStudentPendingQuizes" (click)="storeQuizData(item.quizName, item.createdBy, item.quizDuration)">
+                      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80); align-items: center;"></div>
+                      <div class="card__content" style="align-items: center; align-content: center;">
+                        <h3 class="card__heading" style="align-items: center; text-align: center; margin-top: 40% !important;">{{item.quizName}}</h3>
+                      </div>
+                    </a>
+
+                    <!-- <a class="card" href="#">
+                      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                      <div class="card__content">
+                        <p class="card__category">Category</p>
+                        <h3 class="card__heading">Example Card Heading</h3>
+                      </div>
+                    </a>
+
+                    <a class="card" href="#">
+                      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                      <div class="card__content">
+                        <p class="card__category">Category</p>
+                        <h3 class="card__heading">Example Card Heading</h3>
+                      </div>
+                    </a>
+
+                    <a class="card" href="#">
+                      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+                      <div class="card__content">
+                        <p class="card__category">Category</p>
+                        <h3 class="card__heading">Example Card Heading</h3>
+                      </div>
+                    </a> -->
+
+
+                    </div>
+                </section>
+
+              </div>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Previous Quizes</h1>
+              </div>
+
+
+
+
+              <table id ="users">
+
+                <tr>
+                    <th style="width: 30pc;">
+                      Time Created
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Quiz Name
+                    </th>
+
+                    <th style="width: 25pc;">
+                      Contact
+                    </th>
+
+                    <th style="width: 15pc;">
+                      Quiz Marks
+                    </th>
+
+
+                </tr>
+
+                <tr *ngFor = "let item of allStudentQuizes">
+                  <td style="width: 30pc;" >
+                    {{item.createdTime}}
+                  </td>
+                  <td style="width: 25pc;" >
+                    {{item.quizName}}
+                  </td>
+                  <td style="width: 25pc;" >
+                    {{item.createdBy}}
+                  </td>
+                  <td style="width: 15pc;">
+                    {{item.Marks}}
+                  </td>
+              </tr>
+              </table>
+
+
+
+            </div>
+
+          </div>
+        </main>
+
+      </div>
+  </div>
+</div>
